@@ -2,27 +2,21 @@ import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
 
-import footer from "./src/core/footer";
-import navbar from "./src/core/navbar";
-import { gitHub, gitPage } from "./utils";
-import { Favicon, Title, Organization, Project, BaseURL } from "./config";
+import { Repo, Branding, HeaderNavbar, FooterLinks, Copyright } from "./config";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
-const GitPage = gitPage(Organization);
-const GitHub = gitHub(Organization, Project);
-
 const config: Config = {
-  title: Title,
-  favicon: Favicon,
-  tagline: "Dinosaurs are cool",
+  title: Branding.title,
+  favicon: Branding.favicon,
+  tagline: Branding.tagline,
 
   // Set the production url of your site here
-  url: GitPage,
-  baseUrl: BaseURL,
+  url: Repo.gitpage,
+  baseUrl: Repo.baseURL,
 
   // GitHub pages deployment config.
-  organizationName: Organization,
-  projectName: Project,
+  organizationName: Repo.organization,
+  projectName: Repo.project,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -40,7 +34,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: `${GitHub}/tree/main/docs/`,
+          editUrl: `${Repo.github}/tree/main/docs/`,
         },
         blog: {
           showReadingTime: true,
@@ -48,7 +42,7 @@ const config: Config = {
             type: ["rss", "atom"],
             xslt: true,
           },
-          editUrl: `${GitHub}/tree/main/docs/blog/`,
+          editUrl: `${Repo.github}/tree/main/docs/`,
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
@@ -63,11 +57,21 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: "/img/docusaurus-social-card.jpg",
-    //@ts-ignore
-    navbar: navbar,
-    //@ts-ignore
-    footer: footer,
+    image: Branding.socialCard,
+    navbar: {
+      title: Branding.title,
+      logo: {
+        alt: "Site Logo",
+        src: Branding.logo,
+      },
+      //@ts-ignore
+      items: HeaderNavbar,
+    },
+    footer: {
+      style: "dark",
+      copyright: Copyright,
+      links: FooterLinks,
+    },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
