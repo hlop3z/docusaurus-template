@@ -28,9 +28,16 @@ const config: Config = {
     locales: ["en"],
   },
 
+  themes: ["@docusaurus/theme-mermaid"],
+
+  markdown: {
+    mermaid: true,
+  },
+
   presets: [
     [
       "classic",
+      /** @type {import('@docusaurus/preset-classic').Options} */
       {
         docs: {
           sidebarPath: "./sidebars.ts",
