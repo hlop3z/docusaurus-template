@@ -1,4 +1,4 @@
-import { gitHub, gitPage } from "./utils";
+import { gitHub, gitPage, Datetime } from "./utils";
 
 // ==================================================
 // 🔗 GitHub & Project Info
@@ -28,9 +28,7 @@ export const Branding = {
 // ==================================================
 // © Copyright
 // ==================================================
-export const Copyright = `Copyright © ${new Date().getFullYear()} — ${
-  Repo.organization
-}`;
+export const Copyright = `Copyright © ${Datetime()} — ${Repo.organization}`;
 
 // ==================================================
 // 🧭 Navbar Configuration
